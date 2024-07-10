@@ -1096,6 +1096,7 @@ function mountIncompleteFunctionComponent(
   );
 }
 
+// 함수 컴포넌트 업데이트 로직
 function updateFunctionComponent(
   current: null | Fiber,
   workInProgress: Fiber,
@@ -1152,6 +1153,7 @@ function updateFunctionComponent(
   if (enableSchedulingProfiler) {
     markComponentRenderStarted(workInProgress);
   }
+  // Note - renderWithHooks 함수를 통해 실제 함수 컴포넌트를 실행하고 훅을 처리
   if (__DEV__) {
     nextChildren = renderWithHooks(
       current,
@@ -1235,6 +1237,7 @@ export function replayFunctionComponent(
   return workInProgress.child;
 }
 
+// 클래스 컴포넌트
 function updateClassComponent(
   current: Fiber | null,
   workInProgress: Fiber,

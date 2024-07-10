@@ -2091,6 +2091,7 @@ function dispatchActionState<S, P>(
   }
 }
 
+// 전달된 시점의 작업 함수?
 function runActionStateAction<S, P>(
   actionQueue: ActionStateQueue<S, P>,
   node: ActionStateQueueNode<S, P>,
@@ -3412,6 +3413,10 @@ function dispatchReducerAction<S, A>(
   markUpdateInDevTools(fiber, lane, action);
 }
 
+// Note - setState 실행시 실행되는 함수
+// fiber - 현재 함수 컴포넌트의 Fiber 노드
+// queue - 상태 업뎃을 위한 큐
+// action - 새로운 상태값 또는 이전 상태를 기반으로 새로운 상태를 계산
 function dispatchSetState<S, A>(
   fiber: Fiber,
   queue: UpdateQueue<S, A>,

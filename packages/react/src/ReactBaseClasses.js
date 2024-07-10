@@ -64,7 +64,10 @@ Component.prototype.setState = function (partialState, callback) {
         'function which returns an object of state variables.',
     );
   }
-
+  // this - 현재 컴포넌트의 인스턴스
+  // partialState - 업데이트할 새로운 상태 객체 or 함수
+  // callback - 상태 업데이트 후 호출될 콜백 함수
+  // setState - 작업 명칭
   this.updater.enqueueSetState(this, partialState, callback, 'setState');
 };
 

@@ -8,15 +8,20 @@
 const didWarnStateUpdateForUnmountedComponent = {};
 
 function warnNoop(publicInstance, callerName) {
+  // 개발 환경에서만 경고 출력
   if (__DEV__) {
+    // 경고 메시지에 사용할 컴포넌트 이름을 결정
     const constructor = publicInstance.constructor;
     const componentName =
       (constructor && (constructor.displayName || constructor.name)) ||
       'ReactClass';
+    // 경고를 출력한 경우 중복 출력을 방지
     const warningKey = `${componentName}.${callerName}`;
     if (didWarnStateUpdateForUnmountedComponent[warningKey]) {
       return;
     }
+    // 마운트되지 않은 컴포넌트에서 상태 업데이트 메서드를 호출하려고 할 때
+    // 발생하는 문제와 해결 방법에 대한 상세한 경고 메시지를 출력
     console.error(
       "Can't call %s on a component that is not yet mounted. " +
         'This is a no-op, but it might indicate a bug in your application. ' +
@@ -25,6 +30,7 @@ function warnNoop(publicInstance, callerName) {
       callerName,
       componentName,
     );
+    // 동일한 경고의 중복 출력을 방지하기 위해 경고 발생을 기록
     didWarnStateUpdateForUnmountedComponent[warningKey] = true;
   }
 }
